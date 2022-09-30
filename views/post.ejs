@@ -1,0 +1,18 @@
+<%- include("header") -%>
+
+    <div class="postCard">
+        <h1><%= conteudo.titulo %></h1>
+        <div class="postImage">
+            <img src="<%= conteudo.imagem %>">
+        </div>
+        <article>
+            <%= conteudo.conteudo %>
+        </article>
+        <div class="postCardLink">
+            <a href="/">
+                <button class="btnReadMore">Voltar</button>
+            </a>
+        </div>
+    </div>
+
+<%- include("footer") -%>
