@@ -1,5 +1,5 @@
-# ExpressBlog
 
+<<<<<<< HEAD
 ## Clean Blog made with JavaScript using Node, Express, EJS and MySql.
 
 It gets the data from your local DataBase and sends it to the landing page.
@@ -23,3 +23,5 @@ You can also add new posts to the blog DataBase, I used some validation in the f
             </div>
         </div>
     <% } %> -->
+=======
+>>>>>>> 84ee9ce99dbf391986c95237effd1d7f7c8a5e6d
