@@ -1,6 +1,7 @@
 //jshint esversion:6
 import express from "express";
-import db from "mysql";
+import sqlite3 from "sqlite3";
+
 
 const aboutContent = "Hac habitasse platea dictumst vestibulum rhoncus est pellentesque. Dictumst vestibulum rhoncus est pellentesque elit ullamcorper. Non diam phasellus vestibulum lorem sed. Platea dictumst quisque sagittis purus sit. Egestas sed sed risus pretium quam vulputate dignissim suspendisse. Mauris in aliquam sem fringilla. Semper risus in hendrerit gravida rutrum quisque non tellus orci. Amet massa vitae tortor condimentum lacinia quis vel eros. Enim ut tellus elementum sagittis vitae. Mauris ultrices eros in cursus turpis massa tincidunt dui.";
 
@@ -8,51 +9,43 @@ const contactContent = "Scelerisque eleifend donec pretium vulputate sapien. Rho
 
 const app = express();
 
-function handleConnection() {
-  let connection = db.createConnection({
-      host: 'localhost',
-      user: 'root',
-      password: 'password',
-      database: 'blog',
-      port:"3306",
-  });
-  
-  connection.connect(function(err) {
-      if (err) {
-        return console.error('error: ' + err.message);
-      }
-    
-      console.log('Connected to the MySQL server.');
-  });
+const db = new sqlite3.Database('./pets.db', (err) => {
+  if (err) {
+    console.error(err.message);
+  }
+  console.log('Connected to the database sqlite.');
+});
 
-  return connection;
-  
-}
+
+db.serialize(() => {
+  db.run(`
+    CREATE TABLE IF NOT EXISTS petAdocao (
+      	id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+	      nome varchar(200) NOT NULL,
+        tipo varchar(100) NOT NULL,
+        imagem varchar(5000),
+        bairro varchar(200) NOT NULL,
+        telefone varchar (100) NOT NULL,
+        conteudo varchar (500)
+    );
+  `);
+});
+
+
 
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({extended:true}));
 app.use(express.static("public"));
 
-//ROUTES
-app.get("/", function(req, res) {
-  const sql = "SELECT * FROM POST";
-  const connection = handleConnection();
-  let data;
-  connection.query(sql,(err, result) => {
+
+app.get("/", (req, res) => {
+  const pets = db.all("SELECT * FROM petAdocao", (err, rows) => {
     if(err) {
-      return console.error(err.message);
+      console.log(err,message)
     } else {
-      data = Object.values(JSON.parse(JSON.stringify(result)));
-      return data;
+      res.render("home", {conteudo: rows, nomePagina: "HOME"})
     }
   })
-
-  const espera = async() => {
-    await new Promise(r => setTimeout(r, 1000));
-    res.render("home", {conteudo: data, nomePagina: "HOME"} )
-  }
-  espera();
-  connection.end();
 });
 
 app.get("/about", function(req, res) {
@@ -68,21 +61,24 @@ app.get("/compose", function(req, res) {
 });
 
 app.post("/compose", function(req, res) {
-  const tituloPost = req.body.title;
-  const conteudoPost = req.body.conteudo;
+  const nomePost = req.body.nome;
+  const tipoPost = req.body.tipo;
   const imagemPost = req.body.imagem;
+  const bairroPost = req.body.bairro;
+  const telefonePost = req.body.telefone;
+  const conteudoPost = req.body.conteudo;
 
-  const sql = `INSERT INTO POST (TITULO, CONTEUDO, IMAGEM) VALUES ("${tituloPost}", "${conteudoPost}", "${imagemPost}")`;
-  const connection = handleConnection();
+  const sql = `INSERT INTO petAdocao (NOME, TIPO, IMAGEM, BAIRRO, TELEFONE, CONTEUDO) VALUES (?, ?, ?, ?, ?, ?)`;
 
-  connection.query(sql, (err, result)=> {
-    if(err) throw err;
-    console.log('1 post inserted');
-  })
-
-  connection.end();
-
-  res.redirect("/");
+  db.run(sql, [nomePost, tipoPost, imagemPost, bairroPost, telefonePost, conteudoPost], (err) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send({ message: 'Error creating post' });
+    } else {
+      console.log('Post created successfully');
+      res.redirect("/")
+    }
+  });
 });
 
 app.get("/post/:id", (req, res)=> {

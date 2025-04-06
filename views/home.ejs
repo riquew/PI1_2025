@@ -1,17 +1,17 @@
 <%- include("header") -%>
-    <% for(key in conteudo) { %>
+
+        <% for(key in conteudo) { %>
         <div class="postCard">
-            <h1><%= conteudo[key].titulo %></h1>
+            <h1><%= conteudo[key].nome %></h1>
             <article>
-                <%= conteudo[key].conteudo.slice(0, 500) %> ...
+                <%= conteudo[key].tipo %>
             </article>
             <div class="postCardLink">
                 <a href="/post/<%= conteudo[key].id %>">
-                    <button class="btnReadMore">Leia Mais</button>
+                    <button class="btnReadMore">ME CONHECA</button>
                 </a>
             </div>
         </div>
     <% } %>
-    
 
 <%- include("footer") -%>

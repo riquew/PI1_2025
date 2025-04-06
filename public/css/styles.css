@@ -64,7 +64,7 @@ form label {
     font-weight: 100;
 }
 
-form input {
+form input, select {
     margin: 5px 0;
     height: 40px;
     font-size: 30px;

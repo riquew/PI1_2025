@@ -1,13 +1,25 @@
 <%- include("header") -%>
         <form action="/compose" method="post">
-            <label for="title">Título: </label>
-            <input type="text" name="title" id="">
-            <label for="imagem">Url da imagem: </label>
-            <input type="text" name="imagem" id="">
+            <label for="nome">Nome: </label>
+            <input type="text" name="nome" id="">
+            <label for="tipo">Tipo: </label>
+            <select name="tipo">
+                <option value="CACHORRO">CACHORRO</option>
+                <option value="GATO">GATO</option>
+                <option value="PASSARINHO">PASSARINHO</option>
+                <option value="PEIXE">PEIXE</option>
+                <option value="option3">OUTROS</option>
+              </select>
+            <label for="imagem">Imagem: </label>
+            <input type="file" name="imagem" id="">
+            <label for="bairro">Bairro: </label>
+            <input type="text" name="bairro" id="">
+            <label for="telefone">Telefone: </label>
+            <input type="text" name="telefone" id="">
             <label for="conteudo">Conteúdo:</label>
             <textarea name="conteudo" rows="15" cols="50" maxlength="10000" ></textarea>
             <button type="submit" class="btnsend">ENVIAR</button>
         </form>
-        <script src="/js/validator.js"></script>
+        <!-- <script src="/js/validator.js"></script> -->
 
 <%- include("footer") -%>
