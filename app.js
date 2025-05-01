@@ -39,11 +39,11 @@ app.use(express.static("public"));
 
 
 app.get("/", (req, res) => {
-  const pets = db.all("SELECT * FROM petAdocao", (err, rows) => {
+  const pets = db.all("SELECT * FROM petAdocao", (err, data) => {
     if(err) {
       console.log(err,message)
     } else {
-      res.render("home", {conteudo: rows, nomePagina: "HOME"})
+      res.render("home", {conteudo: data, nomePagina: "HOME"})
     }
   })
 });
@@ -83,25 +83,13 @@ app.post("/compose", function(req, res) {
 
 app.get("/post/:id", (req, res)=> {
   let id = req.params.id;
-  const sql = `SELECT * FROM POST WHERE id = ${id}`;
-  const connection = handleConnection();
-  let data;
-  connection.query(sql,(err, result) => {
-    if(err) {
+  db.get("SELECT * FROM petAdocao WHERE id = ?", [id], (err, data) => {
+    if (err) {
       return console.error(err.message);
-    } else {
-      data = Object.values(JSON.parse(JSON.stringify(result)));
-      return data;
     }
-  })
-
-  const espera = async() => {
-    await new Promise(r => setTimeout(r, 500));
-    res.render("post", {conteudo: data[0], nomePagina: "POST"} )
-  }
-  espera();
-  
-  connection.end();
+    console.log(data)
+    res.render('post', { conteudo: data, nomePagina: "AMIGO"});
+  });
 })
 
 
