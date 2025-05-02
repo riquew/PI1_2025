@@ -1,25 +1,28 @@
 <%- include("header") -%>
-        <form action="/compose" method="post">
-            <label for="nome">Nome: </label>
-            <input type="text" name="nome" id="">
-            <label for="tipo">Tipo: </label>
-            <select name="tipo">
-                <option value="CACHORRO">CACHORRO</option>
-                <option value="GATO">GATO</option>
-                <option value="PASSARINHO">PASSARINHO</option>
-                <option value="PEIXE">PEIXE</option>
-                <option value="option3">OUTROS</option>
-              </select>
-            <label for="imagem">Imagem: </label>
-            <input type="file" name="imagem" id="">
-            <label for="bairro">Bairro: </label>
-            <input type="text" name="bairro" id="">
-            <label for="telefone">Telefone: </label>
-            <input type="text" name="telefone" id="">
-            <label for="conteudo">Conteúdo:</label>
-            <textarea name="conteudo" rows="15" cols="50" maxlength="10000" ></textarea>
-            <button type="submit" class="btnsend">ENVIAR</button>
-        </form>
-        <!-- <script src="/js/validator.js"></script> -->
+<div class="container">
+
+  <form action="/compose" method="post" enctype="multipart/form-data">
+    <label for="nome">Nome: </label>
+    <input type="text" name="nome" id="">
+    <label for="tipo">Tipo: </label>
+    <select name="tipo">
+      <option value="CACHORRO">Cachorro</option>
+      <option value="GATO">Gato</option>
+      <option value="PASSARINHO">Passarinho</option>
+      <option value="PEIXE">Peixe</option>
+      <option value="option3">Outros</option>
+    </select>
+    <label for="imagem">Imagem: </label>
+    <input type="file" name="imagem" accept="image/*" id="">
+    <label for="bairro">Bairro: </label>
+    <input type="text" name="bairro" id="">
+    <label for="telefone">Telefone: </label>
+    <input type="text" name="telefone" id="">
+    <label for="conteudo">Conteúdo:</label>
+    <textarea name="conteudo" rows="15" cols="50" maxlength="10000" ></textarea>
+    <button type="submit" class="btnsend">ENVIAR</button>
+  </form>
+  
+</div>
 
 <%- include("footer") -%>

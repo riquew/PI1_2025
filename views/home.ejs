@@ -1,17 +1,24 @@
 <%- include("header") -%>
 
+    <div class="container">
+
         <% for(key in conteudo) { %>
         <div class="postCard">
-            <h1><%= conteudo[key].nome %></h1>
-            <article>
-                <%= conteudo[key].tipo %>
-            </article>
-            <div class="postCardLink">
-                <a href="/post/<%= conteudo[key].id %>">
-                    <button class="btnReadMore">ME CONHECA</button>
-                </a>
+            <div class="postImage">
+                <img src="<%= conteudo[key].imagem %>" alt="">
             </div>
+            <article>
+                <h1><%= conteudo[key].nome %></h1>
+                <p><%= conteudo[key].tipo %></p>
+                <div class="postCardLink">
+                    <a href="/post/<%= conteudo[key].id %>">
+                        <button class="btnReadMore">ME CONHECA</button>
+                    </a>
+                </div>
+            </article>
         </div>
     <% } %>
+
+    </div>
 
 <%- include("footer") -%>

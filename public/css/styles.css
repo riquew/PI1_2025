@@ -1,18 +1,65 @@
-html, body {
-    height: 100%;
+body {
+    margin: 0;
+    font-family: "Open sans", Arial, Helvetica, sans-serif;
+    background-color: #E7EED3;
+  }
+  
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  li {
+    list-style: none;
+  }
+  
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  ul,
+  h1,
+  li {
+    padding: 0;
+  }
+  
+  h1,
+  h2,
+  h3,
+  h4,
+  p,
+  blockquote,
+  ul {
+    margin: 0;
+  }
+  
+  button {
+    border: none;
+    cursor: pointer;
+  }
+  
+
+li, h1 {
+    font-family: 'Patrick Hand', cursive;
+    color: #445D00;
 }
 
-.flex-wrapper {
+.container {
+    max-width: 1200px;
+    padding-left: 20px;
+    padding-right: 20px;
+    box-sizing: border-box;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.nav{
     display: flex;
-    min-height: 100vh;
-    flex-direction: column;
-    justify-content: flex-start;
+    gap: 40px;
+    font-size: 20px;
     align-items: center;
-}
-
-.container-fluid {
-    padding-top: 70px;
-    padding-bottom: 70px;
 }
 
 .navbar {
@@ -23,6 +70,14 @@ html, body {
     margin-bottom: 0;
     font-size: 12px;
     letter-spacing: 5px;
+    background-color: #C4D0A3;
+    display: flex;
+    flex-direction: row;
+}
+
+.logo-nav img{
+    width: 120px;
+    padding: 0 40px;
 }
 
 .navbar-nav  li a:hover {
@@ -76,15 +131,12 @@ form textarea {
     word-break: break-all;
 }
 
-.notValid {
-    background-color: rgb(241, 169, 169);
-}
 
 .btnsend, .btnReadMore {
     background-color: #f1eaea;
-    border-radius: 3px;
+    border-radius: 24px;
     border: 3px solid transparent;
-    color: #000;
+    color: #445D00;;
     font-size: 25px;
     margin: 15px 0;
     padding: 10px;
@@ -99,24 +151,39 @@ form textarea {
 
 .btnsend:active, .btnReadMore:active {
     box-shadow: 7px 6px 28px 1px rgba(0, 0, 0, 0.24);
-    transform: translateY(4px);
+    transform: translateY(2px);
 }
 
 .postCard{
-    width: 80%;
     margin-top: 20px;
+    background-color: #C4D0A3;
+    display: flex;
+    justify-content: start;
+    border-radius: 24px;
+    max-height: 400px;
+    padding-right: 40px;
+    box-shadow: 5px 5px 10px rgba(0, 4, 4, 0.25);
 }
 
 .postCard article {
     display: inline-block;
     word-wrap:break-word;
-
+    display: flex;
+    flex-direction: column;
+    flex: 4;
+    gap: 20px;
+    padding: 20px 0;
 }
 
 .postImage {
     display: flex;
-    justify-content: center;
-    padding: 50px 0;
+    flex: 1;
+
+}
+
+.postImage img {
+    border-radius: 24px 0 0 24px;
+    max-width: 300px;
 }
 
 img {
@@ -126,9 +193,9 @@ img {
 .postCardLink {
     display: flex;
     justify-content: flex-end;
+
 }
 
 .btnReadMore {
-    width: 100px;
-    font-size: 15px;
+    font-size: 24px;
 }

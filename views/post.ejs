@@ -1,18 +1,25 @@
 <%- include("header") -%>
 
+<div class="container">
+    
+    
     <div class="postCard">
-        <h1><%= conteudo.nome %></h1>
         <div class="postImage">
             <img src="<%= conteudo.imagem %>">
         </div>
         <article>
-            <%= conteudo.conteudo %>
+            <h1><%= conteudo.nome %></h1>
+            <p><%= conteudo.tipo %></p>
+            <p><%= conteudo.conteudo %></p>
+            <p><%= conteudo.bairro %></p>
+            <p><%= conteudo.telefone %></p>
+            <div class="postCardLink">
+                <a href="/">
+                    <button class="btnReadMore">Voltar</button>
+                </a>
+            </div>
         </article>
-        <div class="postCardLink">
-            <a href="/">
-                <button class="btnReadMore">Voltar</button>
-            </a>
-        </div>
     </div>
-
+    
+</div>
 <%- include("footer") -%>
