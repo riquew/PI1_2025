@@ -86,14 +86,32 @@ li, h1 {
 
 .carousel {
     max-height: 400px;
-    background-color: #f4f4f4    ;
+    background-color: #f4f4f4;
     display: flex;
     justify-content: center;
+    margin-bottom: 40px;
+}
+
+.carousel-content {
+    width: 1200px;
+    padding-left: 20px;
+    padding-right: 20px;
+    box-sizing: border-box;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.carousel h1 {
+    align-self: center;
+    justify-self: start;
 }
 
 .carousel img {
     object-fit: contain;
-    padding-left: 600px;
+    justify-content: end;
 }
 
 .footer {
@@ -115,8 +133,8 @@ li, h1 {
 form {
     display: flex;
     flex-direction: column;
-    margin-top: 10px;
-    width: 80%;
+    margin-top: 20px;
+    justify-content: center;
 }
 
 form label {
@@ -147,6 +165,8 @@ form textarea {
     margin: 15px 0;
     padding: 10px;
     width: 200px;
+    align-self: end;
+    justify-self: end;
 }
 
 .btnsend:hover, .btnReadMore:hover {
@@ -172,8 +192,6 @@ form textarea {
 }
 
 .postCard article {
-    display: inline-block;
-    word-wrap:break-word;
     display: flex;
     flex-direction: column;
     flex: 4;
@@ -197,5 +215,28 @@ form textarea {
 .postCardLink {
     display: flex;
     justify-content: flex-end;
-
+    align-self: end;
+    justify-self: end;
+    margin-top: auto;
 }
+
+
+@media (max-width: 600px) {
+    .postCard {
+      flex-direction: column;
+      align-items: center;
+      padding-right: 0;
+    }
+  
+    .postImage,
+    .postCard article {
+      flex: none;
+      width: 100%;
+    }
+  
+    .postImage img {
+      width: 100%;
+      border-radius: 24px 24px 0 0;
+    }
+  }
+  
