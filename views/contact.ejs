@@ -1,8 +1,43 @@
 <%- include("header") -%>
-<div class="container">
+<div class="container main">
     
-    <div class="postCard">
-        <%= conteudo %>
-    </div>
+    <section class="contato container">
+        <h1>📞 Fale Conosco</h1>
+      
+        <p>
+          Quer saber mais sobre adoção, tirar dúvidas ou oferecer ajuda? Estamos aqui para conversar! 
+          Entre em contato com a gente por meio do formulário abaixo ou pelas nossas redes sociais. 💬🐾
+        </p>
+      
+        <div class="contato-info">
+          <div>
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Campo Limpo Paulista - SP</span>
+          </div>
+          <div>
+            <i class="fas fa-phone-alt"></i>
+            <span>(11) 91234-5678</span>
+          </div>
+          <div>
+            <i class="fas fa-envelope"></i>
+            <span>contato@adoteumamigo.org</span>
+          </div>
+        </div>
+      
+        <form class="form-contato" action="https://formsubmit.co/hwindlin@gmail.com" method="POST">
+            <input type="hidden" name="_next" value="/formReceived">
+          
+            <label for="nome">Nome</label>
+            <input type="text" id="nome" name="nome" required>
+          
+            <label for="email">E-mail</label>
+            <input type="email" id="email" name="email" required>
+          
+            <label for="mensagem">Mensagem</label>
+            <textarea id="mensagem" name="mensagem" rows="5" required></textarea>
+          
+            <button type="submit" class="btnsend">Enviar Mensagem</button>
+          </form>
+      </section>
 </div>
 <%- include("footer") -%>

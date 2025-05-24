@@ -3,28 +3,28 @@
     <div class="carousel-content">
 
         <h1>Adote amor, mude uma vida. 🐾</h1>
-        <img src="/carousel1.jpg" alt="">
+        <img src="/carousel2.jpg" alt="">
     </div>
 </div>
 
-    <div class="container">
+    <div class="container main">
 
-        <% for(key in conteudo) { %>
-        <div class="postCard">
-            <div class="postImage">
-                <img src="<%= conteudo[key].imagem %>" alt="">
-            </div>
-            <article>
-                <h1><%= conteudo[key].nome %></h1>
-                <p><%= conteudo[key].tipo %></p>
-                <div class="postCardLink">
-                    <a href="/post/<%= conteudo[key].id %>">
-                        <button class="btnReadMore">ME CONHECA</button>
-                    </a>
+        <% Object.keys(conteudo).reverse().forEach(function(key) { %>
+            <div class="postCard">
+                <div class="postImage">
+                    <img src="<%= conteudo[key].imagem %>" alt="">
                 </div>
-            </article>
-        </div>
-    <% } %>
+                <article>
+                    <h1><%= conteudo[key].nome %></h1>
+                    <p><%= conteudo[key].tipo %> 🐾</p>
+                    <div class="postCardLink">
+                        <a href="/post/<%= conteudo[key].id %>">
+                            <button class="btnReadMore">ME CONHEÇA</button>
+                        </a>
+                    </div>
+                </article>
+            </div>
+        <% }); %>
 
     </div>
 

@@ -1,6 +1,6 @@
 <%- include("header") -%>
 
-<div class="container">
+<div class="container main">
     
     
     <div class="postCard">
@@ -9,10 +9,10 @@
         </div>
         <article>
             <h1><%= conteudo.nome %></h1>
-            <p><%= conteudo.tipo %></p>
+            <p><%= conteudo.tipo %> 🐾</p>
             <p><%= conteudo.conteudo %></p>
-            <p><%= conteudo.bairro %></p>
-            <p><%= conteudo.telefone %></p>
+            <p><%= conteudo.bairro %> <i class="fas fa-map-marker-alt"></i></p>
+            <p><%= conteudo.telefone %>         <i class="fas fa-phone"></i></p>
             <div class="postCardLink">
                 <a href="/">
                     <button class="btnReadMore">Voltar</button>

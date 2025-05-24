@@ -2,12 +2,11 @@
 import express from "express";
 import sqlite3 from "sqlite3";
 import multer from "multer";
+import nodemailer from "nodemailer";
 import path from 'path';
 import { fileURLToPath } from 'url';
 
-const aboutContent = "Hac habitasse platea dictumst vestibulum rhoncus est pellentesque. Dictumst vestibulum rhoncus est pellentesque elit ullamcorper. Non diam phasellus vestibulum lorem sed. Platea dictumst quisque sagittis purus sit. Egestas sed sed risus pretium quam vulputate dignissim suspendisse. Mauris in aliquam sem fringilla. Semper risus in hendrerit gravida rutrum quisque non tellus orci. Amet massa vitae tortor condimentum lacinia quis vel eros. Enim ut tellus elementum sagittis vitae. Mauris ultrices eros in cursus turpis massa tincidunt dui.";
 
-const contactContent = "Scelerisque eleifend donec pretium vulputate sapien. Rhoncus urna neque viverra justo nec ultrices. Arcu dui vivamus arcu felis bibendum. Consectetur adipiscing elit duis tristique. Risus viverra adipiscing at in tellus integer feugiat. Sapien nec sagittis aliquam malesuada bibendum arcu vitae. Consequat interdum varius sit amet mattis. Iaculis nunc sed augue lacus. Interdum posuere lorem ipsum dolor sit amet consectetur adipiscing elit. Pulvinar elementum integer enim neque. Ultrices gravida dictum fusce ut placerat orci nulla. Mauris in aliquam sem fringilla ut morbi tincidunt. Tortor posuere ac ut consequat semper viverra nam libero.";
 
 const app = express();
 const __filename = fileURLToPath(import.meta.url);
@@ -66,12 +65,13 @@ app.get("/", (req, res) => {
 });
 
 app.get("/about", function(req, res) {
-  res.render("about", {conteudo: aboutContent});
+  res.render("about");
 });
 
 app.get("/contact", function(req, res) {
-  res.render("contact", {conteudo: contactContent});
+  res.render("contact");
 });
+
 
 app.get("/compose", function(req, res) {
   res.render("compose");
@@ -102,14 +102,21 @@ app.get("/post/:id", (req, res)=> {
   let id = req.params.id;
   db.get("SELECT * FROM petAdocao WHERE id = ?", [id], (err, data) => {
     if (err) {
-      return console.error(err.message);
+      console.error(err.message);
+      return res.status(500).send("Erro ao acessar o banco de dados.");
     }
-    console.log(data)
-    res.render('post', { conteudo: data});
+
+    if (!data) {
+      return res.status(404).render("404");
+    }
+
+    res.render('post', { conteudo: data });
   });
-})
+});
 
-
+app.use((req, res) => {
+  res.status(404).render("404");
+});
 
 
 
